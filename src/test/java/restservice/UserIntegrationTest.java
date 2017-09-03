@@ -156,6 +156,7 @@ public class UserIntegrationTest {
     	
     }
     
+    @SuppressWarnings("unchecked")
     private Long getIdOfFirstUser() throws Exception {
 		MvcResult result = mockMvc.perform(get("/user/")).andExpect(status().isOk()).andReturn();
 		String content = result.getResponse().getContentAsString();
@@ -168,6 +169,7 @@ public class UserIntegrationTest {
         return -1L;
     }
     
+    @SuppressWarnings("unchecked")
     private int getUserCount() throws Exception {
     		MvcResult result = mockMvc.perform(get("/user/")).andExpect(status().isOk()).andReturn();
     		String content = result.getResponse().getContentAsString();
