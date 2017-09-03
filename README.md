@@ -63,7 +63,7 @@ Maven:
 
 [TODO] Build automation: Jenkins
 
-Sonar Qube:
+Sonar Qube: http://localhost:9000/dashboard?id=org.springframework%3Ags-rest-service
 - Installed in: /usr/local/sonarqube-6.5/bin/macosx-universal-64/
 - start with: sh sonar.sh start
 - build project with: mvn clean install
