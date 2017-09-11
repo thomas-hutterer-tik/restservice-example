@@ -66,22 +66,21 @@ Maven:
 Sonar Qube: http://localhost:9000/dashboard?id=org.springframework%3Ags-rest-service
 - Installed in: /usr/local/sonarqube-6.5/bin/macosx-universal-64/
 - start with: sh sonar.sh start
-- build project with: mvn clean install
-- run with: mvn sonar:sonar
+- build project with: mvn clean install sonar:sonar
 - Access resutls: http://localhost:9000/projects?sort=-analysis_date 
+- Default User: admin/admin
 - change DB to MySQL
 -- created schema "sonar"
 -- create user "sonar", "sonar_db"
 
-
-
-Code Coverage:
-- include test results: use JaCoCo from ECL Emma
--- install ECL Emma in Eclipse from : http://update.eclemma.org/ 
--- add to file sonar.properties:
---- sonar.junit.reportPaths=target/surefire-reports
--- add dependency to pom.xml: org.jacoco, jacoco-maven-plugin
--- to create reports run: mvn jacoco:report 
+# Code Coverage:
+include test results: use JaCoCo from ECL Emma
+* install ECL Emma in Eclipse from : http://update.eclemma.org/ 
+* add to file sonar.properties:
+	* sonar.junit.reportPaths=target/surefire-reports
+* add dependency to pom.xml: org.jacoco, jacoco-maven-plugin
+* add build definition to pom.xml for: org.jaccoco
+* to create reports run: mvn jacoco:report 
 
 ------------- Deployment -------------
 
