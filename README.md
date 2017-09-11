@@ -73,7 +73,7 @@ Sonar Qube: http://localhost:9000/dashboard?id=org.springframework%3Ags-rest-ser
 -- created schema "sonar"
 -- create user "sonar", "sonar_db"
 
-# Code Coverage:
+### Code Coverage:
 include test results: use JaCoCo from ECL Emma
 * install ECL Emma in Eclipse from : http://update.eclemma.org/ 
 * add to file sonar.properties:
