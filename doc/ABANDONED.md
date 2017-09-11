@@ -1,4 +1,4 @@
-### ABANDONED Play Framework
+# ABANDONED Play Framework
 Use Play Version 2.6 (latest Aug 2017)
 activator new play-java-jpa-example
 
@@ -22,7 +22,7 @@ activator -jvm-debug 9999 "~run"
 Eclipse -> Debug As -> Debug Configuration -> New -> Port 9999
 
 ## ABANDONED Persistence Options
-#Play EBean:
+### Play EBean:
 * Sample Play V2.6: 
 * build.sbt: jdbc, PlayJava, PlayEbean
 * Bean: 
@@ -30,7 +30,7 @@ Eclipse -> Debug As -> Debug Configuration -> New -> Port 9999
 * Controller: 
 * DB: in memory h2
 
-#Play JPA
+### Play JPA
 - JPA with support for async DB access
 * Sample Play V2.6: play-java-jpa-example
 * build.sbt: javaJpa
@@ -39,7 +39,7 @@ Eclipse -> Debug As -> Debug Configuration -> New -> Port 9999
 * Controller: * complex because of async
 * DB: in memory
 
-# Spring, Hibernate => PREFERRED without Play
+### Spring, Hibernate => PREFERRED without Play
 * Sample: play-spring-data-jpa => RUNTIME FAILURE
 ==> play-java-spring-data-jpa
 * build.sbt: javaJpa, spring-context, spring-data-jpa, 

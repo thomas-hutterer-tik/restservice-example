@@ -1,5 +1,7 @@
 # Spring only
 
+![SonarResult](/gs-rest-service/doc/SonarResult-2017-09-03.png)
+
 ## REST Framework
 
 ### Spring boot Template: 
@@ -73,10 +75,6 @@
 	* change DB to MySQL
 		* created schema "sonar"
 		* create user "sonar", "sonar_db"
-
-
-![SonarResult](/gs-rest-service/doc/SonarResult-2017-09-03.png)
-
 
 ### Code Coverage:
 include test results: use JaCoCo from ECL Emma
