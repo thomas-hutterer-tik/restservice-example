@@ -1,19 +1,21 @@
-### Spring only
+# Spring only
+
+![Image](doc/SonarResult-2017-09-03.png)
 
 ## REST Framework
 
-# Spring boot Template: 
+### Spring boot Template: 
 * create with http://start.spring.io/, add dependencies: REST repositories, JPA
 * use template gs-rest-service from: https://github.com/spring-guides/gs-rest-service/tree/master/complete
 * create THT template on GitHub
 	* [TODO] create related Entity Communication
 
-# Testing:
+### Testing:
 * UnitTest
 * IntegrationTest use: org.springframework.test.web.servlet.MockMvc
 * REST TestClient use: org.springframework.web.client.RestTemplate
 
-#IDE: STS - Spring Tool Suite, based on Eclipse 4.7
+### IDE: STS - Spring Tool Suite, based on Eclipse 4.7
 * download from: https://spring.io/tools/sts/all
 * Stop DEBUG logging in test
 	* from: https://www.mkyong.com/spring-boot/spring-boot-test-how-to-stop-debug-logs/
@@ -28,14 +30,14 @@
 
 ## Persistence
 
-# Persistence Framework: JPA (Part of Java 8, wide tool support)
+### Persistence Framework: JPA (Part of Java 8, wide tool support)
 * add spring dependency in pom.xml
 * Auto generate getters and setters: import lombok.Data
 	* from: http://www.vogella.com/tutorials/JavaPersistenceAPI/article.html
 
-# [TODO] OR-Mapper: Hibernate or Spring ???
+### [TODO] OR-Mapper: Hibernate or Spring ???
 
-# Database: MySQL
+### Database: MySQL
 * installed in: /usr/local/mysql
 * Autostart Config in Systemeinstellungen => MySQL
 * MySQL Workbench from: https://dev.mysql.com/downloads/workbench/
@@ -48,13 +50,13 @@
 		* spring.jpa.hibernate.ddl-auto=create
 	* add dependency to pom.xml: mysql, mysql-connector-java
 
-# Security
+### Security
 
 * [TODO] Authentication: OAuth 2.0, JWT
 * Disable SSL for DB-Access:
 	* spring.datasource.url=jdbc:mysql://localhost/foo?verifyServerCertificate=false&useSSL=false&requireSSL=false
 
-# Build
+### Build
 
 * Source Repository: GitHub
 
@@ -74,7 +76,7 @@
 		* created schema "sonar"
 		* create user "sonar", "sonar_db"
 
-# Code Coverage:
+### Code Coverage:
 include test results: use JaCoCo from ECL Emma
 * install ECL Emma in Eclipse from : http://update.eclemma.org/ 
 * add to file sonar.properties:
@@ -83,13 +85,13 @@ include test results: use JaCoCo from ECL Emma
 * add build definition to pom.xml for: org.jaccoco
 * to create reports run: mvn jacoco:report 
 
-# [TODO] Deployment
+### [TODO] Deployment
 
 * Binary Repo: Docker Registry
 * Container: Docker
 * Hosting:  AWS-EC2
 
-# Automation
+### Automation
 
 * [TODO] Automate runtime startup with shell script
 * [TODO] Automate development environment setup with Docker
