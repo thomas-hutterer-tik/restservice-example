@@ -1,7 +1,5 @@
 # Spring only
 
-![Image](doc/SonarResult-2017-09-03.png)
-
 ## REST Framework
 
 ### Spring boot Template: 
@@ -23,9 +21,9 @@
 	* http://www.nodeclipse.org/updates/markdown/
 * [TODO] live editing / hot reloading of changes 
 
-# [TODO] Service Registry: Consul
+### [TODO] Service Registry: Consul
 
-# [TODO] REST API Documentation: Swagger
+### [TODO] REST API Documentation: Swagger
 * look at: https://jaxenter.de/spring-boot-tutorial-54020
 
 ## Persistence
@@ -35,7 +33,7 @@
 * Auto generate getters and setters: import lombok.Data
 	* from: http://www.vogella.com/tutorials/JavaPersistenceAPI/article.html
 
-### [TODO] OR-Mapper: Hibernate or Spring ???
+### OR-Mapper: Hibernate plus Spring JPA
 
 ### Database: MySQL
 * installed in: /usr/local/mysql
@@ -75,6 +73,8 @@
 	* change DB to MySQL
 		* created schema "sonar"
 		* create user "sonar", "sonar_db"
+
+![SonarResult](/gs-rest-service/doc/SonarResult-2017-09-03.png)
 
 ### Code Coverage:
 include test results: use JaCoCo from ECL Emma
