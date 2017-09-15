@@ -1,6 +1,6 @@
 # Spring only
 
-![SonarResult](/gs-rest-service/doc/SonarResult-2017-09-03.png)
+![SonarResult](/restservice-example/doc/SonarResult-2017-09-03.png)
 
 ## REST Framework
 
