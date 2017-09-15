@@ -39,12 +39,28 @@
 
 ## Persistence
 
-### Persistence Framework: JPA (Part of Java 8, wide tool support)
-* add spring dependency in pom.xml
-* Auto generate getters and setters: import lombok.Data
-	* from: http://www.vogella.com/tutorials/JavaPersistenceAPI/article.html
+### Framework + OR-Mapper: ## JPA (Part of Java 8, wide tool support, includes Hibernate
 
-### OR-Mapper: Hibernate plus Spring JPA
+add spring dependency in pom.xml:
+		```xml
+        <dependency>
+       	 	<groupId>org.springframework.boot</groupId>
+        		<artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+        		<groupId>javax.inject</groupId>
+        		<artifactId>javax.inject</artifactId>
+        		<version>1</version>
+        </dependency>
+		```
+Auto generate getters and setters: import lombok.Data
+	* from: http://www.vogella.com/tutorials/JavaPersistenceAPI/article.html
+		```xml
+        <dependency>
+        		<groupId>org.projectlombok</groupId>
+        		<artifactId>lombok</artifactId>
+        </dependency>
+		```
 
 ### Database: MySQL
 * installed in: /usr/local/mysql
@@ -58,6 +74,12 @@
 		* spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 		* spring.jpa.hibernate.ddl-auto=create
 	* add dependency to pom.xml: mysql, mysql-connector-java
+		```xml
+       <dependency>
+        		<groupId>mysql</groupId>
+        		<artifactId>mysql-connector-java</artifactId>
+        </dependency>
+		```
 
 ### Security
 
