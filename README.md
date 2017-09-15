@@ -21,7 +21,14 @@
 	* from: https://www.mkyong.com/spring-boot/spring-boot-test-how-to-stop-debug-logs/
 * Add Markdown Editor for README.md:
 	* http://www.nodeclipse.org/updates/markdown/
-* [TODO] live editing / hot reloading of changes 
+* live editing / hot reloading of changes: 
+	* add dependency to pom.xml:     
+	<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <optional>true</optional>
+    </dependency>
+	
 
 ### [TODO] Service Registry: Consul
 
