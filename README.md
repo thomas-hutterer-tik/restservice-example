@@ -22,12 +22,14 @@
 * Add Markdown Editor for README.md:
 	* http://www.nodeclipse.org/updates/markdown/
 * live editing / hot reloading of changes: 
-	* add dependency to pom.xml:     
+	* add dependency to pom.xml: 
+	```xml    
 	<dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-devtools</artifactId>
         <optional>true</optional>
     </dependency>
+    ```
 	
 
 ### [TODO] Service Registry: Consul
