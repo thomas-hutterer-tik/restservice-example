@@ -20,6 +20,17 @@ in Eclipse:
 	* Select <local project directory>
 	* .project file is created by Eclipse
 
+## Development tools
+
+What need to run on the development server:
+```bash
+$ /usr/local/Cellar/mosquitto/1.4.14/mosquitto -c /usr/local/Cellar/mosquitto/1.4.14/mosquitto.conf
+$ golang/bin/prometheus -config.file=/usr/local/prometheus/prometheus.yml
+```
+
+### Prometheus
+http://localhost:9090/graph?g0.range_input=1h&g0.expr=smartpi_active_watts&g0.tab=0
+
 ## REST Framework
 
 ### Spring boot Template: 
