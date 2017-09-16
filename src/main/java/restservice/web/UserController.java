@@ -38,7 +38,7 @@ public class UserController {
 	}
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<? extends Object> getUser(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> getUser(@PathVariable("id") Long id) {
         logger.info("Fetching User with id {}", id);
         User user = repository.findOne(id);
         if (user == null) {
@@ -64,7 +64,7 @@ public class UserController {
     // ------------------- Update a User ------------------------------------------------
     
     @PutMapping("/user/{id}")
-    public ResponseEntity<? extends Object> putUser(@PathVariable("id") Long id, @RequestBody User user) {
+    public ResponseEntity<Object> putUser(@PathVariable("id") Long id, @RequestBody User user) {
         logger.info("Updating User with id {}", id);
  
         User currentUser = repository.findOne(id);
