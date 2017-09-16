@@ -2,6 +2,24 @@
 
 ![SonarResult](/restservice-example/doc/SonarResult-2017-09-03.png)
 
+## Create a new project step by step
+
+on GitHub:
+* Create new repository on GitHub with README.md
+* Copy .gitignore and LICENSE from https://github.com/thomas-hutterer-tik/restservice-example
+* Commit all 3 files
+
+Open a new Terminal window
+```bash
+$ cd Source/Spring
+$ git clone https://github.com/we-save-energy/wse-pi
+``` 
+
+in Eclipse:
+* Menu: File->Open Project From Files system ...
+	* Select <local project directory>
+	* .project file is created by Eclipse
+
 ## REST Framework
 
 ### Spring boot Template: 
@@ -9,6 +27,14 @@
 * use template gs-rest-service from: https://github.com/spring-guides/gs-rest-service/tree/master/complete
 * create THT template on GitHub
 	* [TODO] create related Entity Communication
+* to add REST support to any project add
+		```xml
+	   <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+		```
+	
 
 ### Testing:
 * UnitTest
@@ -84,8 +110,13 @@ Auto generate getters and setters: import lombok.Data
 ### Security
 
 * [TODO] Authentication: OAuth 2.0, JWT
-* Disable SSL for DB-Access:
-	* spring.datasource.url=jdbc:mysql://localhost/foo?verifyServerCertificate=false&useSSL=false&requireSSL=false
+
+* Database
+	* create individual user for each application (eg wse_db for wse applications)
+	* grant access to user on to application schema (eg schema energy)
+	* [TODO] Encrypt DB pwd in application.properties
+	* [TODO] Enable SSL for DB-Access: (currently disbabled with:)
+		* spring.datasource.url=jdbc:mysql://localhost/foo?verifyServerCertificate=false&useSSL=false&requireSSL=false
 
 ### Build
 
