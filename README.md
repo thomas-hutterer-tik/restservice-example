@@ -20,14 +20,6 @@ in Eclipse:
 	* Select <local project directory>
 	* .project file is created by Eclipse
 
-## Development tools
-
-What need to run on the development server:
-```bash
-$ /usr/local/Cellar/mosquitto/1.4.14/mosquitto -c /usr/local/Cellar/mosquitto/1.4.14/mosquitto.conf
-$ golang/bin/prometheus -config.file=/usr/local/prometheus/prometheus.yml
-```
-
 ### Prometheus
 http://localhost:9090/graph?g0.range_input=1h&g0.expr=smartpi_active_watts&g0.tab=0
 
@@ -129,7 +121,16 @@ Auto generate getters and setters: import lombok.Data
 	* [TODO] Enable SSL for DB-Access: (currently disbabled with:)
 		* spring.datasource.url=jdbc:mysql://localhost/foo?verifyServerCertificate=false&useSSL=false&requireSSL=false
 
-### Build
+## Build
+
+### Development tools
+
+What need to run on the development server:
+```bash
+$ /usr/local/Cellar/mosquitto/1.4.14/mosquitto -c /usr/local/Cellar/mosquitto/1.4.14/mosquitto.conf
+$ golang/bin/prometheus -config.file=/usr/local/prometheus/prometheus.yml
+$ /usr/local/sonarqube-6.5/bin/macosx-universal-64/sonar.sh start
+```
 
 * Source Repository: GitHub
 
@@ -139,16 +140,19 @@ Auto generate getters and setters: import lombok.Data
 
 * [TODO] Build automation: Jenkins
 
-* Sonar Qube: http://localhost:9000/dashboard?id=org.springframework%3Ags-rest-service
-	* Installed in: /usr/local/sonarqube-6.5/bin/macosx-universal-64/
-	* start with: sh sonar.sh start
-	* build project with: mvn clean install sonar:sonar
-	* Access resutls: http://localhost:9000/projects?sort=-analysis_date 
-	* Default User: admin/admin
-	* change DB to MySQL
-		* created schema "sonar"
-		* create user "sonar", "sonar_db"
-
+* Sonar Qube:
+  http://localhost:9000/dashboard?id=org.springframework%3Ags-rest-service
+	*  Installed in: /usr/local/sonarqube-6.5/bin/macosx-universal-64/
+	*  start with: 
+		`` `bash
+		/usr/local/sonarqube-6.5/bin/macosx-universal-64/sonar.sh start
+		` ``
+	*  build project with: mvn clean install sonar:sonar
+	*  Access results: http://localhost:9000/projects?sort=-analysis_date
+	*  Default User: admin/admin
+	*  change DB to MySQL
+		*  created schema "sonar"
+		*  create user "sonar", "sonar_db"
 ### Code Coverage:
 include test results: use JaCoCo from ECL Emma
 * install ECL Emma in Eclipse from : http://update.eclemma.org/ 
