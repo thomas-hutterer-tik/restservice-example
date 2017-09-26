@@ -23,6 +23,7 @@ import restservice.domain.UserRepository;
 
 /**
  * Controller for REST api of the User entity
+ * Supports 6 different REST API calls
  * 
  * @author thomas
  */
