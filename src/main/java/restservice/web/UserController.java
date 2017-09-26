@@ -21,6 +21,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import restservice.domain.User;
 import restservice.domain.UserRepository;
 
+/**
+ * Controller for REST api of the User entity
+ * 
+ * @author thomas
+ */
 @RestController
 public class UserController {
 	

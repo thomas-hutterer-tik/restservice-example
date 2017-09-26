@@ -138,7 +138,7 @@ $ /usr/local/sonarqube-6.5/bin/macosx-universal-64/sonar.sh start
 	* links added to $PATH: /usr/local/bin
 
 * [TODO] Build automation: Jenkins
-	* Instllation for Mac OsX from official site
+	* Installation for Mac OsX from official site
 	* http://localhost:8080
 	* Admin user thomas created
 
