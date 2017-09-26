@@ -28,7 +28,6 @@ public class User {
 	}
 
     public User(Long id, String lastName, String firstName) {
-		super();
 		this.id = id;
 		this.lastName = lastName;
 		this.firstName = firstName;
