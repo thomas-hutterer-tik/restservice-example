@@ -37,7 +37,6 @@ http://localhost:9090/graph?g0.range_input=1h&g0.expr=smartpi_active_watts&g0.ta
             <artifactId>spring-web</artifactId>
         </dependency>
 		```
-	
 
 ### Testing:
 * UnitTest
@@ -139,6 +138,9 @@ $ /usr/local/sonarqube-6.5/bin/macosx-universal-64/sonar.sh start
 	* links added to $PATH: /usr/local/bin
 
 * [TODO] Build automation: Jenkins
+	* Instllation for Mac OsX from official site
+	* http://localhost:8080
+	* Admin user thomas created
 
 * Sonar Qube:
   http://localhost:9000/dashboard?id=org.springframework%3Ags-rest-service
