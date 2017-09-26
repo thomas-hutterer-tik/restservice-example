@@ -141,7 +141,7 @@ $ /usr/local/sonarqube-6.5/bin/macosx-universal-64/sonar.sh start
 	* Installation for Mac OsX from official site
 	* http://localhost:8080
 	* Admin user thomas created
-	* Global-Setting: Enable SCM Poll
+	* Project-Setting: Enable Poll SCM
 	* Add to project file: ".git/hooks/post-commit" with this content adapted to the project
 		```bash
 		!/bin/sh
