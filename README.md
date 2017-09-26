@@ -141,6 +141,13 @@ $ /usr/local/sonarqube-6.5/bin/macosx-universal-64/sonar.sh start
 	* Installation for Mac OsX from official site
 	* http://localhost:8080
 	* Admin user thomas created
+	* Global-Setting: Enable SCM Poll
+	* Add to project file: ".git/hooks/post-commit" with this content adapted to the project
+		```bash
+		!/bin/sh
+		curl http://localhost:8080/git/notifyCommit?url=file:///Users/thomas/Source/git/restservice-example
+		```
+	
 
 * Sonar Qube:
   http://localhost:9000/dashboard?id=org.springframework%3Ags-rest-service
