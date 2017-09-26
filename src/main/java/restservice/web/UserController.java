@@ -55,7 +55,7 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }    
 
-    // -------------------Create a User-------------------------------------------  
+    // -------------------Create a User------------------------------------------
     @PostMapping("/user/")
     public ResponseEntity<String> postUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
         logger.info("Creating User : {}", user);
