@@ -124,13 +124,6 @@ Auto generate getters and setters: import lombok.Data
 
 ### Development tools
 
-What need to run on the development server:
-```bash
-$ /usr/local/Cellar/mosquitto/1.4.14/mosquitto -c /usr/local/Cellar/mosquitto/1.4.14/mosquitto.conf
-$ golang/bin/prometheus -config.file=/usr/local/prometheus/prometheus.yml
-$ /usr/local/sonarqube-6.5/bin/macosx-universal-64/sonar.sh start
-```
-
 * Source Repository: GitHub
 
 * Maven:
