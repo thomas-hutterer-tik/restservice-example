@@ -184,3 +184,16 @@ include test results: use JaCoCo from ECL Emma
 * [TODO] Automate runtime startup with shell script
 * [TODO] Automate development environment setup with Docker
 * [TODO] Deploy development environment to AWS
+
+# Cloud Foundry
+
+Download CF tools
+* cf login -a https://api.sys.adp.allianz -u dragan.gaic@allianz.at -p <YOUR PASSWORD GOES HERE> 
+	* Choose a provider organization, in our case it's: IT Summit Coding Session 
+	* Chose a user, pick any available, in my case its Developer 
+	* You're now logged in 
+* Now you need to push an application.
+	* In your current command line open a SpringBoot project folder. I know it works with Maven projects.
+	* Execute: cf push <APP_NAME>
+	* This will push your application to CloudFoundry
+
