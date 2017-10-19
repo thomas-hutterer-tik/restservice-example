@@ -47,6 +47,8 @@ http://localhost:9090/graph?g0.range_input=1h&g0.expr=smartpi_active_watts&g0.ta
 * download from: https://spring.io/tools/sts/all
 * Stop DEBUG logging in test
 	* from: https://www.mkyong.com/spring-boot/spring-boot-test-how-to-stop-debug-logs/
+	* -Dorg.apache.logging.log4j.simplelog.StatusLogger.level=trace 
+	* -Dlog4j.configurationFile=log4j2-test.properties
 * Add Markdown Editor for README.md:
 	* http://www.nodeclipse.org/updates/markdown/
 * live editing / hot reloading of changes: 
