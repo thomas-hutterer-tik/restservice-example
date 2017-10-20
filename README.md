@@ -1,6 +1,6 @@
 # Spring only
 
-![SonarResult](/restservice-example/doc/SonarResult-2017-09-03.png)
+![SonarResult](restservice-example/doc/SonarResult-2017-09-03.png)
 
 ## Create a new project step by step
 
