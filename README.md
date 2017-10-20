@@ -1,6 +1,6 @@
 # Spring only
 
-![SonarResult](restservice-example/doc/SonarResult-2017-09-03.png)
+![SonarResult](https://github.com/thomas-hutterer-tik/restservice-example/blob/master/doc/SonarResult-2017-09-03.png)
 
 ## Create a new project step by step
 
