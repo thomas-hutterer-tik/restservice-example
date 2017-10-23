@@ -1,6 +1,6 @@
 # Spring only
 
-![SonarResult](/restservice-example/doc/SonarResult-2017-09-03.png)
+![SonarResult](https://github.com/thomas-hutterer-tik/restservice-example/blob/master/doc/SonarResult-2017-09-03.png)
 
 ## Create a new project step by step
 
@@ -47,6 +47,8 @@ http://localhost:9090/graph?g0.range_input=1h&g0.expr=smartpi_active_watts&g0.ta
 * download from: https://spring.io/tools/sts/all
 * Stop DEBUG logging in test
 	* from: https://www.mkyong.com/spring-boot/spring-boot-test-how-to-stop-debug-logs/
+	* -Dorg.apache.logging.log4j.simplelog.StatusLogger.level=trace 
+	* -Dlog4j.configurationFile=log4j2-test.properties
 * Add Markdown Editor for README.md:
 	* http://www.nodeclipse.org/updates/markdown/
 * live editing / hot reloading of changes: 
@@ -123,13 +125,6 @@ Auto generate getters and setters: import lombok.Data
 ## Build
 
 ### Development tools
-
-What need to run on the development server:
-```bash
-$ /usr/local/Cellar/mosquitto/1.4.14/mosquitto -c /usr/local/Cellar/mosquitto/1.4.14/mosquitto.conf
-$ golang/bin/prometheus -config.file=/usr/local/prometheus/prometheus.yml
-$ /usr/local/sonarqube-6.5/bin/macosx-universal-64/sonar.sh start
-```
 
 * Source Repository: GitHub
 
