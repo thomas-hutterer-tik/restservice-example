@@ -1,12 +1,12 @@
 
 # Image Recognition Backend
 
-Provide a REST Api to front end applications that allows to invoke image recognition and retrieve all recognized images from previous session with their associated recongnition results.
+Provide a REST Api to front end applications that allows to invoke image recognition and retrieve all recognized images from previous session with their associated recognition results.
 
-## Stateless recognition service on CRP:
+## State less recognition service on CRP:
 
 Invoke with this command:
-(echo -n '{"data": "'; base64 pill_bottle.jpg; echo '"}') | curl -X POST -H "Content-Type: application/json" --insecure -d @- https://aml-image-recognition-aml.apps.crp.allianz
+(echo -n '{"data": "'; base64 pill_bottle.jpg; echo '"}') | curl -X POST -H "Content-Type: application/json" --insecure -d @- http://aml-image-recognition-aml.apps.crp.allianz
 
 Result:
   "predictions": [

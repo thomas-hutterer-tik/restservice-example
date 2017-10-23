@@ -1,13 +1,23 @@
 package restservice.web;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +26,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import restservice.domain.imagerecognition.ImageMessage;
+import restservice.domain.imagerecognition.PredictionMessage;
+
+import com.google.common.io.ByteStreams;
 
 import restservice.domain.User;
 import restservice.domain.UserRepository;
@@ -41,6 +57,29 @@ public class UserController {
     			logger.info("Fetching " + repository.count() + " Users");
         
 		return repository.findAll();
+	}
+
+    @GetMapping("/user/image/")
+    public String getUserImage() throws Exception {
+    	if (logger.isInfoEnabled()) 
+    		logger.info("getUserImage");
+    	
+    	InputStream image = this.getClass().getClassLoader().getResourceAsStream("Sivota2012.JPG");
+		byte[] imageBytes = ByteStreams.toByteArray(image);
+		String imageBase64UrlEncoded = StringUtils.newStringUtf8(Base64.encodeBase64(imageBytes));
+		ImageMessage imageMessage = new ImageMessage(imageBase64UrlEncoded);
+
+		HttpHeaders requestHeaders = new HttpHeaders();
+		requestHeaders.setContentType(new MediaType("application","json"));
+		HttpEntity<ImageMessage> requestEntity = new HttpEntity<ImageMessage>(imageMessage, requestHeaders);
+		RestTemplate restTemplate = new RestTemplate();
+
+		ResponseEntity<PredictionMessage> responseEntity = restTemplate.exchange("http://image-recognition-aml.apps.tools.adp.allianz", HttpMethod.POST, requestEntity, PredictionMessage.class);
+		PredictionMessage predictionMessage = responseEntity.getBody();
+		
+		logger.info(predictionMessage.toString());
+       
+		return predictionMessage.toString();
 	}
 
     @GetMapping("/user/{id}")

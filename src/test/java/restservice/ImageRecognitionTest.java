@@ -5,27 +5,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.security.GeneralSecurityException;
-import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Base64;
 
-import org.apache.http.config.Registry;
-import org.apache.http.config.RegistryBuilder;
-import org.apache.http.conn.socket.ConnectionSocketFactory;
-import org.apache.http.conn.socket.LayeredConnectionSocketFactory;
-import org.apache.http.conn.socket.PlainConnectionSocketFactory;
-import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
-import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.SSLContexts;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.apache.http.ssl.SSLContextBuilder;
-import org.apache.http.ssl.TrustStrategy;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,7 +24,7 @@ import org.springframework.web.client.RestTemplate;
  */
 public class ImageRecognitionTest {
   
-    private static final String REST_SERVICE_URI = "https://aml-image-recognition-aml.apps.crp.allianz";
+    private static final String REST_SERVICE_URI = "http://image-recognition-aml.apps.tools.adp.allianz";
 	private static final RestTemplate restTemplate = getRestTemplateBypassingHostNameVerifcation();
 
 	public static RestTemplate getRestTemplateBypassingHostNameVerifcation() {
