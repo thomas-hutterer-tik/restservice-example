@@ -5,25 +5,31 @@ public class Prediction {
 	private String label;
 	private String description;
 	private Double probability;
-	
+
 	public String getLabel() {
 		return label;
 	}
+
 	public void setLabel(String label) {
 		this.label = label;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public Double getProbability() {
 		return probability;
 	}
+
 	public void setProbability(Double probability) {
 		this.probability = probability;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -37,5 +43,5 @@ public class Prediction {
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 }

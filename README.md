@@ -192,3 +192,14 @@ Download CF tools
 	* Execute: cf push <APP_NAME>
 	* This will push your application to CloudFoundry
 
+
+# MySQL
+
+- `docker run --name mysql-itsummit -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mysql/mysql-server:latest`
+- `docker exec -it 30fc0345984d mysql -uroot -p`
+    ```CREATE DATABASE foo;
+CREATE USER 'foo'@'%' IDENTIFIED BY 'bar';
+GRANT ALL PRIVILEGES ON foo . * TO 'foo';
+FLUSH PRIVILEGES;```
+- `docker stop/start 30fc0345984d`
+

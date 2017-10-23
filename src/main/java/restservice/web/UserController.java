@@ -1,8 +1,6 @@
 package restservice.web;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,8 +9,6 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -29,11 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import restservice.domain.imagerecognition.ImageMessage;
+import restservice.domain.imagerecognition.Image;
 import restservice.domain.imagerecognition.PredictionMessage;
 
 import com.google.common.io.ByteStreams;
 
+import restservice.domain.ImageRepository;
 import restservice.domain.User;
 import restservice.domain.UserRepository;
 
@@ -51,7 +48,10 @@ public class UserController {
     @Inject
     UserRepository repository;
     
-    @GetMapping("/user/")
+    @Inject
+    ImageRepository imageRepository;
+    
+    @GetMapping("/users")
     public List<User> getUsers() {
     		if (logger.isInfoEnabled()) 
     			logger.info("Fetching " + repository.count() + " Users");
@@ -59,30 +59,7 @@ public class UserController {
 		return repository.findAll();
 	}
 
-    @GetMapping("/user/image/")
-    public String getUserImage() throws Exception {
-    	if (logger.isInfoEnabled()) 
-    		logger.info("getUserImage");
-    	
-    	InputStream image = this.getClass().getClassLoader().getResourceAsStream("Sivota2012.JPG");
-		byte[] imageBytes = ByteStreams.toByteArray(image);
-		String imageBase64UrlEncoded = StringUtils.newStringUtf8(Base64.encodeBase64(imageBytes));
-		ImageMessage imageMessage = new ImageMessage(imageBase64UrlEncoded);
-
-		HttpHeaders requestHeaders = new HttpHeaders();
-		requestHeaders.setContentType(new MediaType("application","json"));
-		HttpEntity<ImageMessage> requestEntity = new HttpEntity<ImageMessage>(imageMessage, requestHeaders);
-		RestTemplate restTemplate = new RestTemplate();
-
-		ResponseEntity<PredictionMessage> responseEntity = restTemplate.exchange("http://image-recognition-aml.apps.tools.adp.allianz", HttpMethod.POST, requestEntity, PredictionMessage.class);
-		PredictionMessage predictionMessage = responseEntity.getBody();
-		
-		logger.info(predictionMessage.toString());
-       
-		return predictionMessage.toString();
-	}
-
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<Object> getUser(@PathVariable("id") Long id) {
         logger.info("Fetching User with id {}", id);
         User user = repository.findOne(id);
@@ -92,10 +69,10 @@ public class UserController {
                     + " not found", HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(user, HttpStatus.OK);
-    }    
+    }
 
     // -------------------Create a User------------------------------------------
-    @PostMapping("/user/")
+    @PostMapping("/users")
     public ResponseEntity<String> postUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
         logger.info("Creating User : {}", user);
  
@@ -108,7 +85,7 @@ public class UserController {
 
     // ------------------- Update a User ------------------------------------------------
     
-    @PutMapping("/user/{id}")
+    @PutMapping("/users/{id}")
     public ResponseEntity<Object> putUser(@PathVariable("id") Long id, @RequestBody User user) {
         logger.info("Updating User with id {}", id);
  
@@ -129,7 +106,7 @@ public class UserController {
  
     // ------------------- Delete a User-----------------------------------------
  
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/users/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") long id) {
         logger.info("Fetching & Deleting User with id {}", id);
  
@@ -145,12 +122,77 @@ public class UserController {
  
     // ------------------- Delete All Users-----------------------------
  
-    @DeleteMapping("/user/")
+    @DeleteMapping("/users")
     public ResponseEntity<String> deleteAllUsers() {
         logger.info("Deleting All Users");
  
+        imageRepository.deleteAll(); 
         repository.deleteAll();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
  
+    // -------------------Add image to existing User------------------------------------------
+    @PostMapping("/users/{id}/images")
+    public ResponseEntity<String> postUserImage(@PathVariable("id") long id, @RequestBody Image imageMessage, UriComponentsBuilder ucBuilder) {
+    	User user = repository.findOne(id);
+    	logger.info("Found User : {}", user);
+    	if (user == null) {
+    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    	}
+    	
+    	imageMessage.setUser(user);
+    	imageMessage.setPrediction(predict(imageMessage.getData()));
+    	imageRepository.save(imageMessage);
+    	
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/user/{id}/images/{imageId}").buildAndExpand(user.getId(), imageMessage.getId()).toUri());
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/images/sample/predictions")
+    public String getSampleImagePrediction() throws Exception {
+    	InputStream image = this.getClass().getClassLoader().getResourceAsStream("Sivota2012.JPG");
+		byte[] imageBytes = ByteStreams.toByteArray(image);
+		String imageBase64UrlEncoded = StringUtils.newStringUtf8(Base64.encodeBase64(imageBytes));
+		String result = predict(imageBase64UrlEncoded);
+		logger.info(result);
+       
+		return result;
+	}
+
+	private String predict(String imageBase64UrlEncoded) {
+		Image imageMessage = new Image(imageBase64UrlEncoded);
+		
+		HttpHeaders requestHeaders = new HttpHeaders();
+		requestHeaders.setContentType(new MediaType("application","json"));
+		HttpEntity<Image> requestEntity = new HttpEntity<Image>(imageMessage, requestHeaders);
+		RestTemplate restTemplate = new RestTemplate();
+
+		// TODO move url to application.properties
+		ResponseEntity<PredictionMessage> responseEntity = restTemplate.exchange("http://image-recognition-aml.apps.tools.adp.allianz", HttpMethod.POST, requestEntity, PredictionMessage.class);
+		PredictionMessage predictionMessage = responseEntity.getBody();
+		
+		String result = predictionMessage.toString();
+		return result;
+	}
+
+    @GetMapping("/users/{id}/images/{imageId}/predictions")
+    public String getUserImagePredictions(@PathVariable("id") Long id, @PathVariable("imageId") Long imageId) throws Exception {
+    	if (logger.isInfoEnabled()) 
+    		logger.info("getUserImagePredictions");
+    	// TODO get image.predictions with imageId where user.id = id
+    	return "";
+    }
+
+    @GetMapping("/users/{id}/images/{imageId}")
+    public String getUserImage(@PathVariable("id") Long id, @PathVariable("imageId") Long imageId) throws Exception {
+    	if (logger.isInfoEnabled()) 
+    		logger.info("getUserImage");
+    	
+    	// TODO get image with imageId where user.id = id
+
+    	return "";
+	}
+
+
 }
