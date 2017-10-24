@@ -201,12 +201,13 @@ Download CF tools
 
 - create db and user:
 
-	`docker exec -it 30fc0345984d mysql -uroot -p`
-    ```
+  `docker exec -it 30fc0345984d mysql -uroot -p`
+```
 CREATE DATABASE foo;
 CREATE USER 'foo'@'%' IDENTIFIED BY 'bar';
 GRANT ALL PRIVILEGES ON foo . * TO 'foo';
-FLUSH PRIVILEGES;```
+FLUSH PRIVILEGES;
+```
 
 - stop/start container:
 
