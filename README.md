@@ -13,7 +13,7 @@ Open a new Terminal window
 ```bash
 $ cd Source/Spring
 $ git clone https://github.com/we-save-energy/wse-pi
-``` 
+```
 
 in Eclipse:
 * Menu: File->Open Project From Files system ...
@@ -25,7 +25,7 @@ http://localhost:9090/graph?g0.range_input=1h&g0.expr=smartpi_active_watts&g0.ta
 
 ## REST Framework
 
-### Spring boot Template: 
+### Spring boot Template:
 * create with http://start.spring.io/, add dependencies: REST repositories, JPA
 * use template gs-rest-service from: https://github.com/spring-guides/gs-rest-service/tree/master/complete
 * create THT template on GitHub
@@ -47,12 +47,12 @@ http://localhost:9090/graph?g0.range_input=1h&g0.expr=smartpi_active_watts&g0.ta
 * download from: https://spring.io/tools/sts/all
 * Stop DEBUG logging in test
 	* from: https://www.mkyong.com/spring-boot/spring-boot-test-how-to-stop-debug-logs/
-	* -Dorg.apache.logging.log4j.simplelog.StatusLogger.level=trace 
+	* -Dorg.apache.logging.log4j.simplelog.StatusLogger.level=trace
 	* -Dlog4j.configurationFile=log4j2-test.properties
 * Add Markdown Editor for README.md:
 	* http://www.nodeclipse.org/updates/markdown/
-* live editing / hot reloading of changes: 
-	* add dependency to pom.xml: 
+* live editing / hot reloading of changes:
+	* add dependency to pom.xml:
 	```xml    
 	<dependency>
         <groupId>org.springframework.boot</groupId>
@@ -60,7 +60,7 @@ http://localhost:9090/graph?g0.range_input=1h&g0.expr=smartpi_active_watts&g0.ta
         <optional>true</optional>
     </dependency>
     ```
-	
+
 
 ### [TODO] Service Registry: Consul
 
@@ -144,12 +144,12 @@ Auto generate getters and setters: import lombok.Data
 		curl http://localhost:8080/git/notifyCommit?url=file:///Users/thomas/Source/git/restservice-example
 		```
 	* add "SonarQube Scanner for Jenkins" plugin
-	
+
 
 * Sonar Qube:
   http://localhost:9000/dashboard?id=org.springframework%3Ags-rest-service
 	*  Installed in: /usr/local/sonarqube-6.5/bin/macosx-universal-64/
-	*  start with: 
+	*  start with:
 		`` `bash
 		/usr/local/sonarqube-6.5/bin/macosx-universal-64/sonar.sh start
 		` ``
@@ -161,12 +161,12 @@ Auto generate getters and setters: import lombok.Data
 		*  create user "sonar", "sonar_db"
 ### Code Coverage:
 include test results: use JaCoCo from ECL Emma
-* install ECL Emma in Eclipse from : http://update.eclemma.org/ 
+* install ECL Emma in Eclipse from : http://update.eclemma.org/
 * add to file sonar.properties:
 	* sonar.junit.reportPaths=target/surefire-reports
 * add dependency to pom.xml: org.jacoco, jacoco-maven-plugin
 * add build definition to pom.xml for: org.jaccoco
-* to create reports run: mvn jacoco:report 
+* to create reports run: mvn jacoco:report
 
 ### [TODO] Deployment
 
@@ -183,10 +183,10 @@ include test results: use JaCoCo from ECL Emma
 # Cloud Foundry
 
 Download CF tools
-* cf login -a https://api.sys.adp.allianz -u dragan.gaic@allianz.at -p <YOUR PASSWORD GOES HERE> 
-	* Choose a provider organization, in our case it's: IT Summit Coding Session 
-	* Chose a user, pick any available, in my case its Developer 
-	* You're now logged in 
+* cf login -a https://api.sys.adp.allianz -u dragan.gaic@allianz.at -p <YOUR PASSWORD GOES HERE>
+	* Choose a provider organization, in our case it's: IT Summit Coding Session
+	* Chose a user, pick any available, in my case its Developer
+	* You're now logged in
 * Now you need to push an application.
 	* In your current command line open a SpringBoot project folder. I know it works with Maven projects.
 	* Execute: cf push <APP_NAME>
@@ -195,13 +195,21 @@ Download CF tools
 
 # MySQL
 
-- `docker run --name mysql-itsummit -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mysql/mysql-server:latest`
-- `docker exec -it 30fc0345984d mysql -uroot -p`
-    ```CREATE DATABASE foo;
+- get and run docker image:
+
+  `docker run --name mysql-itsummit -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mysql/mysql-server:latest`
+
+- create db and user:
+
+	`docker exec -it 30fc0345984d mysql -uroot -p`
+    ```
+CREATE DATABASE foo;
 CREATE USER 'foo'@'%' IDENTIFIED BY 'bar';
 GRANT ALL PRIVILEGES ON foo . * TO 'foo';
 FLUSH PRIVILEGES;```
-- ```
-docker ps --filter "status=exited" | grep mysql
-docker stop/start 30fc0345984d```
 
+- stop/start container:
+
+	`docker ps --filter "status=exited" | grep mysql`
+
+  `docker stop/start 30fc0345984d`
