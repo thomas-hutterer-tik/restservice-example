@@ -201,5 +201,7 @@ Download CF tools
 CREATE USER 'foo'@'%' IDENTIFIED BY 'bar';
 GRANT ALL PRIVILEGES ON foo . * TO 'foo';
 FLUSH PRIVILEGES;```
-- `docker stop/start 30fc0345984d`
+- ```
+docker ps --filter "status=exited" | grep mysql
+docker stop/start 30fc0345984d```
 
