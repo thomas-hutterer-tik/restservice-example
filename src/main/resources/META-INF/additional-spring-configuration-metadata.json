@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "imageRecognitionUrl",
+  "type": "java.lang.String",
+  "description": "The URL of the ImageRecocnition service"
+}]}

@@ -9,6 +9,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -155,10 +156,13 @@ public class UserController {
 		byte[] imageBytes = ByteStreams.toByteArray(image);
 		String imageBase64UrlEncoded = StringUtils.newStringUtf8(Base64.encodeBase64(imageBytes));
 		String result = predict(imageBase64UrlEncoded);
-		logger.info(result);
+		logger.debug(result);
        
 		return result;
 	}
+    
+    @Value("${imageRecognitionUrl}")
+    private String imageRecognitionUrl;
 
 	private String predict(String imageBase64UrlEncoded) {
 		Image imageMessage = new Image(imageBase64UrlEncoded);
@@ -168,8 +172,8 @@ public class UserController {
 		HttpEntity<Image> requestEntity = new HttpEntity<Image>(imageMessage, requestHeaders);
 		RestTemplate restTemplate = new RestTemplate();
 
-		// TODO move url to application.properties
-		ResponseEntity<PredictionMessage> responseEntity = restTemplate.exchange("http://image-recognition-aml.apps.tools.adp.allianz", HttpMethod.POST, requestEntity, PredictionMessage.class);
+		logger.debug("URL from config: " + imageRecognitionUrl);
+		ResponseEntity<PredictionMessage> responseEntity = restTemplate.exchange(imageRecognitionUrl, HttpMethod.POST, requestEntity, PredictionMessage.class);
 		PredictionMessage predictionMessage = responseEntity.getBody();
 		
 		String result = predictionMessage.toString();

@@ -125,7 +125,7 @@ public class ImageRecognitionTest {
     public static void main(String args[]){
     	ImageRecognitionTest test = new ImageRecognitionTest();
         URI uri = test.imageRecognition();
-        return;
+        System.out.println("Result = " + uri);
     }
 
  }
