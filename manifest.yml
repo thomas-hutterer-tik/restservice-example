@@ -6,4 +6,5 @@ applications:
   host: rest-service
   domain: apps.adp.allianz
   path: build/libs/restservice-0.1.0.jar
-  
+env:
+   JBP_CONFIG_DEBUG: '{enabled: true}'

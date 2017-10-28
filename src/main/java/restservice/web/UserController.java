@@ -117,8 +117,7 @@ public class UserController {
             return new ResponseEntity<>("Unable to delete. User with id " + id + " not found.",
                     HttpStatus.NOT_FOUND);
         }
-        repository.delete(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
  
     // ------------------- Delete All Users-----------------------------

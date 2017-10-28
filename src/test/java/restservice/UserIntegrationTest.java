@@ -45,7 +45,7 @@ public class UserIntegrationTest {
     @Test
     public void getUsers() throws Exception {
         createUser();
-        this.mockMvc.perform(get("/user/"))
+        this.mockMvc.perform(get("/users/"))
         		.andExpect(status().isOk())
             .andExpect(jsonPath("$.length()").isNumber());
     }
@@ -78,7 +78,7 @@ public class UserIntegrationTest {
         Long id = getIdOfFirstUser();
         User origUser = getUser(id);
         User user  = new User(id, origUser.getLastName() + "X", origUser.getFirstName());
-        this.mockMvc.perform(put("/user/" + id)
+        this.mockMvc.perform(put("/users/" + id)
         		.content(asJsonString(user))
     			.contentType(MediaType.APPLICATION_JSON)
     			.accept(MediaType.APPLICATION_JSON))
@@ -91,7 +91,7 @@ public class UserIntegrationTest {
     @Test
     public void updateUserFailure() throws Exception {
         User user  = new User(-4L, "X", "X");
-        this.mockMvc.perform(put("/user/-4")
+        this.mockMvc.perform(put("/users/-4")
         		.content(asJsonString(user))
     			.contentType(MediaType.APPLICATION_JSON)
     			.accept(MediaType.APPLICATION_JSON))
@@ -102,7 +102,7 @@ public class UserIntegrationTest {
     public void deleteUser() throws Exception{
 		int oldUserCount = getUserCount();
         Long id = getIdOfFirstUser();
-        this.mockMvc.perform(delete("/user/" + id))
+        this.mockMvc.perform(delete("/users/" + id))
         		.andExpect(status().isNoContent());
         assertThat(getUserCount(), is(oldUserCount - 1));
     }
@@ -110,7 +110,7 @@ public class UserIntegrationTest {
     @Test
     public void deleteUserFailure() throws Exception{
 		int oldUserCount = getUserCount();
-        this.mockMvc.perform(delete("/user/" + -4))
+        this.mockMvc.perform(delete("/users/" + -4))
         		.andExpect(status().is4xxClientError());
         assertThat(getUserCount(), is(oldUserCount));
     }
@@ -118,7 +118,7 @@ public class UserIntegrationTest {
     @Test
     public void deleteAllUsers() throws Exception {
     		createUser();
-        mockMvc.perform(delete("/user/"))
+        mockMvc.perform(delete("/users/"))
 			.andExpect(status().isNoContent());
         assertThat(getUserCount(), is(0));
     }
@@ -138,7 +138,7 @@ public class UserIntegrationTest {
     private void createUser() throws Exception {
 		User user = new User(null,"Sarah","Brown");
 
-        this.mockMvc.perform(post("/user/")
+        this.mockMvc.perform(post("/users/")
         		.content(asJsonString(user))
     			.contentType(MediaType.APPLICATION_JSON)
     			.accept(MediaType.APPLICATION_JSON))
@@ -146,7 +146,7 @@ public class UserIntegrationTest {
     }
     
     private User getUser(Long id) throws Exception {
-		MvcResult result = mockMvc.perform(get("/user/" + id)).andReturn();
+		MvcResult result = mockMvc.perform(get("/users/" + id)).andReturn();
 		String content = result.getResponse().getContentAsString();
 		if (result.getResponse().getStatus() == HttpStatus.OK.value()) {
 			ObjectMapper mapper = new ObjectMapper();
@@ -158,7 +158,7 @@ public class UserIntegrationTest {
     
     @SuppressWarnings("unchecked")
     private Long getIdOfFirstUser() throws Exception {
-		MvcResult result = mockMvc.perform(get("/user/")).andExpect(status().isOk()).andReturn();
+		MvcResult result = mockMvc.perform(get("/users/")).andExpect(status().isOk()).andReturn();
 		String content = result.getResponse().getContentAsString();
 		ObjectMapper mapper = new ObjectMapper();
 		List<LinkedHashMap<String, Object>> usersMap = mapper.readValue(content, List.class);
@@ -171,7 +171,7 @@ public class UserIntegrationTest {
     
     @SuppressWarnings("unchecked")
     private int getUserCount() throws Exception {
-    		MvcResult result = mockMvc.perform(get("/user/")).andExpect(status().isOk()).andReturn();
+    		MvcResult result = mockMvc.perform(get("/users/")).andExpect(status().isOk()).andReturn();
     		String content = result.getResponse().getContentAsString();
     		ObjectMapper mapper = new ObjectMapper();
     		List<LinkedHashMap<String, Object>> usersMap = mapper.readValue(content, List.class);
