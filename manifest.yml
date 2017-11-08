@@ -1,10 +1,12 @@
 ---
 applications:
-- name: restservice
+- name: restservice-tht
   memory: 1024M
   instances: 1
-  host: rest-service
+  host: restservice-tht
   domain: apps.adp.allianz
   path: build/libs/restservice-0.1.0.jar
+  services:
+  - ImageDB 
 env:
    JBP_CONFIG_DEBUG: '{enabled: true}'
