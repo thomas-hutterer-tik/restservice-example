@@ -1,4 +1,4 @@
-# Spring only
+# Spring Boot REST Service Example
 
 ![SonarResult](https://github.com/thomas-hutterer-tik/restservice-example/blob/master/doc/SonarResult-2017-09-03.png)
 
@@ -114,6 +114,7 @@ Auto generate getters and setters: import lombok.Data
 ### Security
 
 * [TODO] Authentication: OAuth 2.0, JWT
+	* https://www.codebyamir.com/blog/user-account-registration-with-spring-boot
 
 * Database
 	* create individual user for each application (eg wse_db for wse applications)
