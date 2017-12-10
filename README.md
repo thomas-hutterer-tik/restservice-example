@@ -173,7 +173,10 @@ include test results: use JaCoCo from ECL Emma
 
 * Binary Repo: Docker Registry
 * Container: Docker
-* Hosting:  AWS-EC2
+* Hosting:  
+  * AWS-EC2
+  * OpenShift: https://www.openshift.com/
+  * A2hosting: https://www.a2hosting.com/vps-hosting/unmanaged?aid=586fed0b&data1=ha355524483257052
 
 ### Automation
 
