@@ -134,7 +134,8 @@ Auto generate getters and setters: import lombok.Data
 	* links added to $PATH: /usr/local/bin
 
 * Build automation: Jenkins
-	* Installation for Mac OsX from official site
+	* brew install jenkins
+	* brew services start jenkins
 	* http://localhost:8080
 	* Admin user thomas created
 	* Global Setting: Allow anonymous read
