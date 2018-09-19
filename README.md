@@ -1,4 +1,4 @@
-# Spring only
+# Spring Boot REST Service Example
 
 ![SonarResult](https://github.com/thomas-hutterer-tik/restservice-example/blob/master/doc/SonarResult-2017-09-03.png)
 
@@ -114,6 +114,7 @@ Auto generate getters and setters: import lombok.Data
 ### Security
 
 * [TODO] Authentication: OAuth 2.0, JWT
+	* https://www.codebyamir.com/blog/user-account-registration-with-spring-boot
 
 * Database
 	* create individual user for each application (eg wse_db for wse applications)
@@ -133,7 +134,8 @@ Auto generate getters and setters: import lombok.Data
 	* links added to $PATH: /usr/local/bin
 
 * Build automation: Jenkins
-	* Installation for Mac OsX from official site
+	* brew install jenkins
+	* brew services start jenkins
 	* http://localhost:8080
 	* Admin user thomas created
 	* Global Setting: Allow anonymous read
@@ -172,7 +174,10 @@ include test results: use JaCoCo from ECL Emma
 
 * Binary Repo: Docker Registry
 * Container: Docker
-* Hosting:  AWS-EC2
+* Hosting:  
+  * AWS-EC2
+  * OpenShift: https://www.openshift.com/
+  * A2hosting: https://www.a2hosting.com/vps-hosting/unmanaged?aid=586fed0b&data1=ha355524483257052
 
 ### Automation
 
