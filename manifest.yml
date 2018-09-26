@@ -5,7 +5,7 @@ applications:
   instances: 1
   host: restservice-tht
   domain: apps.adp.allianz
-  path: build/libs/restservice-0.1.0.jar
+  path: target/restservice-example-0.0.1.jar
   services:
   - ImageDB 
 env:

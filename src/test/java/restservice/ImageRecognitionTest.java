@@ -65,7 +65,7 @@ public class ImageRecognitionTest {
 		}; 
 
 		// Install the all-trusting trust manager
-		try {
+/*		try {
 		    SSLContext sc = SSLContext.getInstance("SSL"); 
 		    sc.init(null, trustAllCerts, new java.security.SecureRandom()); 
 			httpClient = HttpClients.custom().setSSLContext(sc)
@@ -81,7 +81,7 @@ public class ImageRecognitionTest {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		return null;
 	}	
 	

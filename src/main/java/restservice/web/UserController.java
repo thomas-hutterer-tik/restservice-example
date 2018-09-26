@@ -10,6 +10,7 @@ import org.apache.commons.codec.binary.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -31,6 +32,8 @@ import restservice.domain.imagerecognition.PredictionMessage;
 
 import com.google.common.io.ByteStreams;
 
+import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.Metrics;
 import restservice.domain.ImageRepository;
 import restservice.domain.User;
 import restservice.domain.UserRepository;
@@ -54,9 +57,7 @@ public class UserController {
     
     @GetMapping("/users")
     public List<User> getUsers() {
-    		if (logger.isInfoEnabled()) 
-    			logger.info("Fetching " + repository.count() + " Users");
-        
+    	Metrics.counter("users.called").increment(1.0);
 		return repository.findAll();
 	}
 
@@ -117,6 +118,7 @@ public class UserController {
             return new ResponseEntity<>("Unable to delete. User with id " + id + " not found.",
                     HttpStatus.NOT_FOUND);
         }
+        repository.delete(id);
          return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
  
