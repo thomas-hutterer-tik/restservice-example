@@ -46,13 +46,16 @@ I install the following components in one directory:
 
 ```bash
 #!/usr/bin/env sh
-./prometheus-2.4.2.windows-amd64/prometheus.exe --config.file=./prometheus.yml &
+./prometheus-2.4.2.windows-amd64/prometheus.exe --config.file=./prometheus.yml --web.enable-lifecycle &
 echo 'prometheus started'
 ./grafana/bin/grafana-server.exe --homepath=./grafana &
 echo 'grafan started'
 wmi_exporter/wmi_exporter.exe --collector.textfile.directory=./wmi_exporter & 
 echo 'wmi_expoerter started as a service'
 ```
+
+Reload the configuration with:
+curl -X POST http://localhost:9090/-/reload
 
 ## Build docker image
 Eclipse -> Run Maven ...: target: install dockerfile:build

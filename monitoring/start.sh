@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-./prometheus-2.4.2.windows-amd64/prometheus.exe --config.file=./prometheus.yml &
+./prometheus-2.4.2.windows-amd64/prometheus.exe --config.file=./prometheus.yml --web.enable-lifecycle &
 echo 'prometheus started'
 ./grafana/bin/grafana-server.exe --homepath=./grafana &
 echo 'grafan started'
