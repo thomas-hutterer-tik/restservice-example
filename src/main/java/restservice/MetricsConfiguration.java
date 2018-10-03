@@ -12,7 +12,7 @@ import io.micrometer.spring.autoconfigure.MeterRegistryCustomizer;
  * @author ru-rocker
  *
  */
-@Configuration
+/*@Configuration
 public class MetricsConfiguration {
  
     /**
@@ -21,7 +21,7 @@ public class MetricsConfiguration {
      *
      * @return registry with registered tags.
      */
-    @Bean
+/*    @Bean
     MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
         return registry -> {
             registry.config().commonTags("application", "restservice-example");
@@ -29,3 +29,4 @@ public class MetricsConfiguration {
     }
  
 }
+*/
